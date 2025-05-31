@@ -9,13 +9,30 @@ Algorithm:
 4.	Call the search function and perform other linked list operations as needed.
  
 Program:
+```
 
-//type your code here
+struct Node {
+    float data;
+    struct Node* next;
+};
 
+struct Node* head = NULL;
+void search(char value) {
+    struct Node* current = head;
+    int position = 1;
+    while (current != NULL) {
+        if (current->data == value) {
+            printf("item %c found at location %d\n", value, position);
+            return;
+        }
+        current = current->next;
+        position++;
+    }
+    printf("Item not found\n");
+}
+```
 Output:
-
-//paste your output here
-
+![image](https://github.com/user-attachments/assets/20c95112-5c50-4b94-a984-05ea6274f177)
 
 
 Result:
@@ -33,12 +50,38 @@ Algorithm:
 4.	Call the insert function and perform other linked list operations as needed.
  
 Program:
+```
+struct Node{
+    char data; 
+    struct Node *next;
+}*head;
 
-//type your code here
-
+void insert(char data)
+{
+    struct Node *n=(struct Node*)malloc(sizeof(struct Node));
+    struct Node *temp;
+    if(head==NULL)
+    {
+        head = n;
+        head->data = data;
+        n->next=NULL;
+        return;
+    }
+    temp=head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    n->data = data;
+    n->next = NULL;
+    temp->next= n;    
+    
+}
+```
 Output:
 
-//paste your output here
+![image](https://github.com/user-attachments/assets/eb461a86-2586-4b8a-8ede-d49199a099ea)
+
 
  
 Result:
@@ -57,13 +100,30 @@ Algorithm:
 4.	Move to the next node by updating the temp pointer to point to the next node (temp = temp->next).
  
 Program:
+```
+struct Node
+{
+    struct Node *prev;
+    struct Node *next;
+    char data;
+}*head;
 
-//type your code here
+void display()
+{
+    struct Node *ptr;
+    //printf("\n printing values...\n");
+    ptr = head;
+    while(ptr != NULL)
+    {
+        printf("%c\n",ptr->data);
+        ptr=ptr->next;
+    }
+}
 
+```
 Output:
 
-//paste your output here
-
+![image](https://github.com/user-attachments/assets/291e2361-394b-4fc4-b543-a5a7080040df)
 
 Result:
 Thus, the program to traverse a doubly linked list is verified successfully. 
@@ -83,11 +143,55 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+struct Node
+{
+    struct Node *prev;
+    struct Node *next;
+    char data;
+}*head;
+
+void insert(char data)
+{
+   struct Node *ptr,*temp;
+ //  int item;
+   ptr = (struct Node *) malloc(sizeof(struct Node));
+   if(ptr == NULL)
+   {
+       printf("OVERFLOW\n");
+   }
+   else
+   {
+       //printf("\nEnter value");
+       //scanf("%d",&item);
+        ptr->data=data;
+       if(head == NULL)
+       {
+           ptr->next = NULL;
+           ptr->prev = NULL;
+           head = ptr;
+       }
+       else
+       {
+          temp = head;
+          while(temp->next!=NULL)
+          {
+              temp = temp->next;
+          }
+          
+          temp->next = ptr;
+          ptr ->prev=temp;
+          ptr->next = NULL;
+          }
+
+       }
+     //printf("\nnode inserted\n");
+    }
+
+```
 
 Output:
-
-//paste your output here
+![image](https://github.com/user-attachments/assets/879eecd9-ddcf-4854-b490-278afcc4561f)
 
 
 Result:
@@ -125,15 +229,43 @@ o	If the element is not found in any node, print a message indicating the elemen
 
 Program:
 
-//type your code here
+```
+struct Node
+{
+    struct Node *prev;
+    struct Node *next;
+    float data;
+}*head;
+
+void delete()
+{
+    struct Node *ptr;
+    if(head == NULL)
+    {
+        printf("UNDERFLOW\n");
+    }
+    else if(head->next == NULL)
+    {
+        head = NULL;
+        free(head);
+        printf("Node deleted\n");
+    }
+    else
+    {
+        ptr = head;
+        head = head -> next;
+        head -> prev = NULL;
+        free(ptr);
+        printf("Node deleted\n");
+    }
+
+}
+
+```
 
 Output:
 
-//paste your output here
-
-
-
-
+![image](https://github.com/user-attachments/assets/25016bd5-d14a-40a8-871d-c3ce99e7b9cd)
 
 Result:
 Thus, the function that deletes a given element from a linked list is verified successfully.
